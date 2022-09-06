@@ -2,6 +2,8 @@ let plans = ["plan1"];
 
 module.exports = {
   getPlan: (req, res) => {
+    console.log(req.query.userkey);
+
     try {
       if (plans.length > 0) {
         res.status(200).send(plans);
