@@ -7,7 +7,7 @@ export default function TopNav() {
         Aesop Marketing
       </Link>
       <ul>
-        <CustomLink to="/user">User Portal</CustomLink>
+        <CustomLink to="/user">Retreive A Plan</CustomLink>
         <CustomLink to="/about">About</CustomLink>
       </ul>
     </nav>
