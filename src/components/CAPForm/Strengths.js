@@ -5,13 +5,14 @@ export default function Strengths({ formData, setFormData }) {
 
   return (
     <div>
-      <p>
+      <p className="tip-paragraph">
         Does your customer service set you apart from the competition? Do you
         have a veteran sales team with decades of combined experience? Below,
         list 2-3 unique strengths that will aid your organization in
         accomplishing its mission.{" "}
       </p>
       <input
+        className="monoline-input"
         type="text"
         id="strengths"
         placeholder="Strengths"

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-export default function FinalPreview({ formData, setFormData }) {
-  let [currentValue, setCurrentValue] = useState();
+export default function FinalPreview({ formData, userKey, setUserKey }) {
   return (
     <div className="other-info-container">
       <ul>
@@ -18,7 +17,12 @@ export default function FinalPreview({ formData, setFormData }) {
       </ul>
       <div>
         <div>Already have a user key?</div>
-        <input type="text" placeholder="Enter key here"></input>
+        <input
+          type="text"
+          placeholder="Enter key here"
+          value={userKey}
+          onChange={(event) => setUserKey(event.target.value)}
+        ></input>
       </div>
     </div>
   );

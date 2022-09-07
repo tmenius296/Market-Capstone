@@ -5,8 +5,9 @@ import Strengths from "./Strengths";
 import Goals from "./Goals";
 import FinalPreview from "./FinalPreview";
 
-export default function CAPForm() {
+export default function CAPForm({ setSavedPlans }) {
   const [page, setPage] = useState(0);
+  const [userKey, setUserKey] = useState("");
 
   const FormTitles = [
     "Mission Statement",
@@ -50,6 +51,8 @@ export default function CAPForm() {
         <FinalPreview
           formData={formData}
           setFormData={setFormData}
+          userKey={userKey}
+          setUserKey={setUserKey}
         ></FinalPreview>
       );
     }
@@ -94,7 +97,24 @@ export default function CAPForm() {
           >
             Next
           </button>
-          <button disabled={page !== 4}>Submit</button>
+          <button
+            disabled={page !== 4}
+            onClick={() => {
+              fetch("http://localhost:5000/api/plan", {
+                method: "post",
+                body: JSON.stringify(formData),
+              });
+
+              fetch(`http://localhost:5000/api/plan?userkey=${userKey}`, {})
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  setSavedPlans(data);
+                });
+            }}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

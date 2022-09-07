@@ -1,10 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
+  background: rgb(47, 0, 255);
+  background: radial-gradient(
+    circle,
+    rgb(89, 0, 255) 0%,
+    rgb(24, 102, 245) 74%,
+    rgb(0, 195, 255) 100%
+  );
   margin: 0%;
   padding: 0%;
   font-family: montserrat, arial, verdana;
@@ -18,7 +32,7 @@ body {
 }
 
 .TopNav {
-  background-color: #4281a4;
+  background-color: rgb(255, 174, 0);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -48,11 +62,11 @@ body {
 }
 
 .TopNav li.active {
-  background-color: #9cafb7;
+  background-color: rgb(202, 138, 0);
 }
 
 .TopNav li:hover {
-  background-color: #4281a4;
+  background-color: rgb(202, 138, 0);
 }
 
 /* form stuff */
@@ -69,7 +83,7 @@ body {
 .form-container {
   width: 400px;
   height: 400px;
-  background-color: white;
+  background-color: rgb(224, 222, 222);
   border-radius: 8px;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
   display: flex;
@@ -80,6 +94,7 @@ body {
   flex: 20%;
   display: grid;
   place-items: center;
+  border-bottom: 10pt gray;
 }
 
 .form-container .body {
@@ -181,3 +196,5 @@ input {
 input:focus {
   border: 3px solid rgb(98, 0, 255);
 }
+
+/*Begin additional styling */

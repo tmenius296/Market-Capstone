@@ -1,0 +1,19 @@
+.tip-paragraph {
+  font-size: 12pt;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.mission-input {
+  margin-top: 10%;
+}
+
+.input-and-ATL {
+  display: flex;
+  padding-left: 10%;
+}
+
+.monoline-input {
+  size: absolute;
+  height: auto;
+}

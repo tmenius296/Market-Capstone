@@ -5,12 +5,13 @@ export default function TargetMarkets({ formData, setFormData }) {
 
   return (
     <div>
-      <p>
+      <p className="tip-paragraph">
         Target Markets are specific sectors of clientelle that your marketing
         plan will cater its goals towards. Target Markets can be specific
         businesses, demographics, or even entire geographical areas
       </p>
       <input
+        className="monoline-input"
         type="text"
         id="target-markets"
         placeholder="Target Markets"
