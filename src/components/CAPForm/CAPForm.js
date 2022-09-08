@@ -9,6 +9,12 @@ export default function CAPForm({ setSavedPlans }) {
   const [page, setPage] = useState(0);
   const [userKey, setUserKey] = useState("");
 
+  const [savedFormData, setSavedFormData] = useState();
+
+  let userKeyEntered = false;
+  let retrievedUserKey = "";
+  let plans = [{}];
+
   const FormTitles = [
     "Mission Statement",
     "Target Markets",
@@ -19,9 +25,10 @@ export default function CAPForm({ setSavedPlans }) {
 
   const [formData, setFormData] = useState({
     mission: "",
-    markets: [],
-    strengths: [],
-    goals: [],
+    markets: [""],
+    strengths: [""],
+    goals: [""],
+    userKey: userKey,
   });
 
   const PageDisplay = () => {
@@ -46,7 +53,6 @@ export default function CAPForm({ setSavedPlans }) {
     } else if (page === 3) {
       return <Goals formData={formData} setFormData={setFormData}></Goals>;
     } else if (page === 4) {
-      console.log(page);
       return (
         <FinalPreview
           formData={formData}
@@ -82,7 +88,7 @@ export default function CAPForm({ setSavedPlans }) {
         <div className="body">{PageDisplay()}</div>
         <div className="footer">
           <button
-            disabled={page === 0}
+            hidden={page === 0 || page === 5}
             onClick={() => {
               setPage((currentPage) => currentPage - 1);
             }}
@@ -90,7 +96,7 @@ export default function CAPForm({ setSavedPlans }) {
             Prev
           </button>
           <button
-            disabled={page === FormTitles.length}
+            hidden={page >= FormTitles.length - 1}
             onClick={() => {
               setPage((currentPage) => currentPage + 1);
             }}
@@ -98,25 +104,64 @@ export default function CAPForm({ setSavedPlans }) {
             Next
           </button>
           <button
-            disabled={page !== 4}
             onClick={() => {
+              fetch(`http://localhost:5000/api/plan`, {
+                method: "get",
+                //body: userKey,
+              })
+                .then((res) => {
+                  return res.json();
+                })
+                .then((data) => {
+                  console.log("response:", data);
+                  setSavedFormData(data);
+                });
+            }}
+          >
+            Retrieve all plans
+          </button>
+          <button
+            hidden={page !== 4}
+            onClick={async () => {
+              const userKeyToSend =
+                userKey || `${Math.floor(Math.random() * 10001)}`;
+
+              if (userKey === userKeyToSend) {
+                userKeyEntered = "true";
+              } else {
+                setUserKey(userKeyToSend);
+              }
               fetch("http://localhost:5000/api/plan", {
                 method: "post",
-                body: JSON.stringify(formData),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ...formData, userKey: userKeyToSend }), //this does literally nothing lol
               });
 
-              fetch(`http://localhost:5000/api/plan?userkey=${userKey}`, {})
-                .then((response) => response.json())
-                .then((data) => {
-                  console.log(data);
-                  setSavedPlans(data);
-                });
+              setPage((currentPage) => currentPage + 1);
             }}
           >
             Submit
           </button>
+
+          <button
+            hidden={page !== 5}
+            onClick={() => {
+              setPage(0);
+            }}
+          >
+            Restart
+          </button>
+          <a href="/user">
+            <button hidden={page !== 5}>Retrieve a plan</button>
+          </a>
+
+          <div hidden={page !== 5}>User key: {userKey}</div>
         </div>
       </div>
+      {savedFormData &&
+        savedFormData.map((data) => JSON.stringify(savedFormData, null, 2))}
     </div>
   );
 }

@@ -19,11 +19,7 @@ export default function Strengths({ formData, setFormData }) {
         value={currentValue}
         onChange={(event) => setCurrentValue(event.target.value)}
       ></input>
-      <ul>
-        {formData.strengths.map((strength) => (
-          <li>{strength}</li>
-        ))}
-      </ul>
+
       <input
         type="button"
         value="add to list"
@@ -35,6 +31,11 @@ export default function Strengths({ formData, setFormData }) {
           })
         }
       ></input>
+      <ul>
+        {formData.strengths.map((strength) => (
+          <li>{strength}</li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -94,7 +94,6 @@ body {
   flex: 20%;
   display: grid;
   place-items: center;
-  border-bottom: 10pt gray;
 }
 
 .form-container .body {

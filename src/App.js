@@ -18,13 +18,6 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/about" element={<About />} />
         </Routes>
-        <div className="server-response">
-          {savedPlans === undefined ? (
-            <p>loading...</p>
-          ) : (
-            savedPlans.map((plan, i) => <p key={i}>{plan}</p>)
-          )}
-        </div>
       </div>
     </>
   );

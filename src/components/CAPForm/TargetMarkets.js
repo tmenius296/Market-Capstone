@@ -18,11 +18,7 @@ export default function TargetMarkets({ formData, setFormData }) {
         value={currentValue}
         onChange={(event) => setCurrentValue(event.target.value)}
       ></input>
-      <ul>
-        {formData.markets.map((market) => (
-          <li>{market}</li>
-        ))}
-      </ul>
+
       <input
         type="button"
         value="add to list"
@@ -34,6 +30,11 @@ export default function TargetMarkets({ formData, setFormData }) {
           })
         }
       ></input>
+      <ul>
+        {formData.markets.map((market) => (
+          <li>{market}</li>
+        ))}
+      </ul>
     </div>
   );
 }

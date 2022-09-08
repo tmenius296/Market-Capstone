@@ -30,12 +30,12 @@ export default function Goals({ formData, setFormData }) {
             })
           }
         ></input>
-        <ul>
-          {formData.goals.map((goal) => (
-            <li>{goal}</li>
-          ))}
-        </ul>
       </div>
+      <ul>
+        {formData.goals.map((goal) => (
+          <li>{goal}</li>
+        ))}
+      </ul>
     </div>
   );
 }

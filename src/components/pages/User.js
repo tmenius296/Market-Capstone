@@ -3,7 +3,8 @@ import React from "react";
 export default function User() {
   return (
     <>
-      <h1>Retreive A Plan</h1>
+      <h1>Enter your user Key to retrieve a plan you've already created!</h1>
+      <input type="text" placeholder={"Enter User Key"}></input>
     </>
   );
 }
